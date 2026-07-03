@@ -24,7 +24,7 @@ class Player(circleshape.CircleShape):
         color: str = "white"
         points: list[Vector2] = self.triangle()
         width: int = LINE_WIDTH
-        draw.polygon(screen, color, points, width)
+        pygame.draw.polygon(screen, color, points, width)
 
     def rotate(self, dt: float) -> None:
         self.rotation += PLAYER_TURN_SPEED * dt
