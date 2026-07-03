@@ -2,7 +2,8 @@ from typing import override
 import pygame
 from pygame import Vector2, Surface
 import circleshape
-from constants import PLAYER_RADIUS, LINE_WIDTH, PLAYER_SPEED, PLAYER_TURN_SPEED
+from shot import Shot
+from constants import PLAYER_RADIUS, LINE_WIDTH, PLAYER_SHOOT_SPEED, PLAYER_SPEED, PLAYER_TURN_SPEED 
 
 class Player(circleshape.CircleShape):
     position: Vector2
@@ -41,8 +42,14 @@ class Player(circleshape.CircleShape):
             self.move(-dt)
         if keys[pygame.K_w]:
             self.move(dt)
+        if keys[pygame.K_SPACE]:
+            self.shoot()
 
     def move(self, dt: float) -> None:
         unit_vector = Vector2(0, 1)
         rotated_vector = unit_vector.rotate(self.rotation)
         self.position += rotated_vector * PLAYER_SPEED * dt
+
+    def shoot(self) -> None:
+        shot = Shot(self.position.x, self.position.y)
+        shot.velocity = Vector2(0, 1).rotate(self.rotation) * PLAYER_SHOOT_SPEED
