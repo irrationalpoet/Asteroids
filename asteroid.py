@@ -1,5 +1,6 @@
 from typing import override
 import pygame
+from pygame import Surface
 from circleshape import CircleShape
 from constants import LINE_WIDTH
 
@@ -8,8 +9,8 @@ class Asteroid(CircleShape):
         super().__init__(x, y, radius)
     
     @override
-    def draw(self, _screen: pygame.Surface) -> None:
-        pygame.draw.circle(_screen, "white", self.position, self.radius, LINE_WIDTH)
+    def draw(self, screen: Surface) -> None:
+        pygame.draw.circle(screen, "white", self.position, self.radius, LINE_WIDTH)
 
     @override
     def update(self, dt: float) -> None:
