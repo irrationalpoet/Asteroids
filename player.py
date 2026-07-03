@@ -12,7 +12,7 @@ class Player(circleshape.CircleShape):
         self.rotation: float = 0
 
     def triangle(self) -> list[Vector2]:
-        """Calculates the three vertices of the player's triangle based on current rotation."""
+        # Calculates the three vertices of the player's triangle based on current rotation.
         forward = Vector2(0,1).rotate(self.rotation)
         right = Vector2(0,1).rotate(self.rotation + 90) * self.radius / 1.5
 
